@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { Component } from 'react'
+import Container from '../Container'
 
 import './App.scss'
 
-const App = () =>
-  <h1>Hello to React World!</h1>
-
-export default App
+export default class App extends Component {
+  render() {
+    return (
+      <Container />
+    )
+  }
+}
