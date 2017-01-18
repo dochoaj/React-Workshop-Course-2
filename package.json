@@ -51,5 +51,8 @@
     "webpack": "1.12.9",
     "webpack-config": "6.2.1",
     "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "axios": "^0.15.3"
   }
 }

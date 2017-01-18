@@ -8,16 +8,15 @@ export default class Tweet extends Component {
       <div className="tweet-container">
         <div className="tweet">
           <div className="tweet-image">
-            <img src="http://placehold.it/100/100" alt="Tweet pic" />
+            <img src={this.props.avatar} alt="Tweet pic" />
           </div>
           <div className="tweet-content">
             <div className="tweet-line">
-              <strong>Username</strong>
+              <strong>{this.props.username}</strong>
               <small>13m</small>
             </div>
             <div className="tweet-line">
-              Sigue su recuperación: jugador de Chapecoense Helio Neto vuelve a
-              caminar tras accidente.
+              {this.props.content}
             </div>
           </div>
         </div>
