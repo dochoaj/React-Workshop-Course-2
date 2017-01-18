@@ -25,6 +25,10 @@ module.exports = new Config().extend('webpack/config/base.config.js').merge({
         test: /\.s(c|a)ss$/,
         loaders: ['style', 'css', 'sass?sourceMap=true'],
       },
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css']
+      }
     ],
   },
   plugins: [
