@@ -1,0 +1,12 @@
+.tweet-text {
+  resize: none;
+  min-height: 50px;
+  width: 100%;
+  border-color: #D1E3CE;
+  border-radius: 3px 3px 0 0;
+
+  &:focus {
+    border-color: #D1E3CE;
+    outline: 0 none;
+  }
+}

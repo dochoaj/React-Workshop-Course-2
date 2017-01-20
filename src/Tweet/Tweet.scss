@@ -25,6 +25,7 @@
 
     .tweet-content {
       margin-left: 10px;
+      width: 100%;
 
       .tweet-line {
         display: flex;
@@ -33,6 +34,18 @@
 
         small {
           margin-left: 10px;
+        }
+      }
+
+      .action-line {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-top: 10px;
+
+        button {
+          margin-left: 5px;
         }
       }
     }
