@@ -1,0 +1,112 @@
+1. npm install --save-dev axios
+
+2. Create src/Utils/TweetAxios.js with the following
+
+import Axios from 'axios'
+
+export default Axios.create({
+  baseURL: 'http://54.226.112.58:3000/asd',
+  timeout: 25000,
+})
+
+3. Change src/Container/Container.js and add the following:
+
+constructor(props) {
+  super(props)
+
+  this.state = {
+    tweets: [],
+  }
+}
+
+fetchTweets() {
+  TweetAxios.get('/tweets')
+    .then((response) => {
+      this.setState({
+        tweets: response.data,
+      })
+    })
+}
+
+<TweetList
+  tweets={this.state.tweets}
+  fetchTweets={this.fetchTweets}
+/>
+
+4. Change src/TweetList/TweetList.js
+
+componentDidMount() {
+  this.props.fetchTweets()
+}
+
+TweetList.propTypes = {
+  fetchTweets: React.PropTypes.func,
+}
+
+export default TweetList
+
+5. Change src/TweetList/TweetList.js
+
+render() {
+  return (
+    <div className="tweet-list">
+      {this.buildTweets()}
+    </div>
+  )
+}
+
+6. Add the buildTweets method
+
+buildTweets() {
+  return this.props.tweets.map((tweet) => {
+   const props = {
+     key: tweet.id,
+     id: tweet.id,
+     avatar: tweet.user.avatar,
+     content: tweet.content,
+     username: tweet.user.code,
+     editTweet: this.props.editTweet,
+     deleteTweet: this.props.deleteTweet,
+   }
+
+   return (
+     <Tweet {...props} />
+   )
+  })
+ }
+
+7. Change Tweet component render method
+
+- <img src="http://placehold.it/100/100" alt="Tweet pic" />
++ <img src={this.props.avatar} alt="Tweet pic" />
+
+
+<div className="tweet-line">
+- <strong>Username</strong>
+- <small>13m</small>
++ <strong>{this.props.username}</strong>
++ <small>{this.buildTimeDifference()}</small>
+</div>
+
+8. Create BuildTimeDifference
+
+npm install --save-dev moment
+
+import moment from 'moment'
+
+buildTimeDifference() {
+  const now = moment()
+  const created = moment(this.props.created_at)
+
+  return moment.duration(now.diff(created)).humanize()
+}
+
+9. Add prop-types
+
+Tweet.propTypes = {
+  content: React.PropTypes.string,
+  id: React.PropTypes.number,
+  created_at: React.PropTypes.string,
+  avatar: React.PropTypes.string,
+  username: React.PropTypes.string,
+ }
